@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Easy Travel</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0d0f14;
+            --surface: #161a23;
+            --card: #1e2330;
+            --border: #2a3045;
+            --accent: #4f8ef7;
+            --accent2: #7ec8e3;
+            --text: #e8ecf4;
+            --muted: #7a849e;
+            --radius-sm: 14px;
+            --radius-lg: 28px;
+            --radius-xl: 40px;
+        }
+
+        html,
+        body {
+            height: 100%;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            overflow: hidden;
+        }
+
+        /* ── Starfield ── */
+        canvas#stars {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ── Pages ── */
+        .page {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            transition: opacity .55s ease, transform .55s ease;
+        }
+
+        .page.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(30px);
+        }
+
+        /* ── Noise overlay ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+            background-size: 200px;
+            pointer-events: none;
+            opacity: .6;
+        }
+
+        /* ── Glow blob ── */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(110px);
+            pointer-events: none;
+            z-index: 0;
+            animation: drift 12s ease-in-out infinite alternate;
+        }
+
+        .blob-1 {
+            width: 420px;
+            height: 420px;
+            top: -80px;
+            left: -80px;
+            background: rgba(79, 142, 247, .12);
+        }
+
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -60px;
+            right: -60px;
+            background: rgba(126, 200, 227, .09);
+            animation-delay: -4s;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(30px, 20px) scale(1.08);
+            }
+        }
+
+        /* ── PAGE 1 ── */
+        .logo-area {
+            text-align: center;
+            margin-bottom: 52px;
+            animation: fadeUp .8s ease both;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 16px;
+            animation: floatY 4s ease-in-out infinite;
+        }
+
+        @keyframes floatY {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 700;
+            letter-spacing: -.5px;
+            background: linear-gradient(135deg, var(--text) 40%, var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.15;
+        }
+
+        .tagline {
+            margin-top: 10px;
+            font-size: .95rem;
+            color: var(--muted);
+            font-weight: 300;
+            letter-spacing: .4px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 100%;
+            max-width: 320px;
+            animation: fadeUp .8s .2s ease both;
+        }
+
+        .btn {
+            padding: 15px 28px;
+            border-radius: var(--radius-sm);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            letter-spacing: .3px;
+            transition: transform .2s, box-shadow .2s, background .2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, .06);
+            opacity: 0;
+            transition: opacity .2s;
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+        }
+
+        .btn:active {
+            transform: scale(.97);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #3a6fd8);
+            color: #fff;
+            box-shadow: 0 6px 28px rgba(79, 142, 247, .3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 36px rgba(79, 142, 247, .42);
+        }
+
+        .btn-ghost {
+            background: var(--card);
+            color: var(--text);
+            border: 1.5px solid var(--border);
+        }
+
+        .btn-ghost:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            box-shadow: 0 6px 24px rgba(79, 142, 247, .1);
+        }
+
+        /* ── PAGE 2 ── */
+        .page-2-inner {
+            width: 100%;
+            max-width: 400px;
+            padding: 0 24px;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-family: 'DM Sans', sans-serif;
+            font-size: .88rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 40px;
+            transition: color .2s;
+            padding: 0;
+        }
+
+        .back-btn:hover {
+            color: var(--text);
+        }
+
+        .back-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .section-label {
+            font-size: .75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+            animation: fadeUp .6s ease both;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.9rem, 4vw, 2.6rem);
+            font-weight: 700;
+            margin-bottom: 32px;
+            animation: fadeUp .6s .1s ease both;
+        }
+
+        .city-card {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 22px 26px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            cursor: pointer;
+            transition: transform .25s, box-shadow .25s, border-color .25s;
+            animation: fadeUp .6s .2s ease both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .city-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(79, 142, 247, .06), transparent 60%);
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        .city-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 40px rgba(79, 142, 247, .15);
+            border-color: var(--accent);
+        }
+
+        .city-card:hover::before {
+            opacity: 1;
+        }
+
+        .city-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent), #3a6fd8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 18px rgba(79, 142, 247, .35);
+        }
+
+        .city-info {
+            flex: 1;
+        }
+
+        .city-name {
+            font-size: 1.15rem;
+            font-weight: 500;
+        }
+
+        .city-sub {
+            font-size: .8rem;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        .city-arrow {
+            color: var(--muted);
+            transition: transform .25s, color .25s;
+        }
+
+        .city-card:hover .city-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--muted);
+            font-size: .8rem;
+            margin: 2px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="stars"></canvas>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <!-- PAGE 1: Welcome -->
+    <div class="page" id="page1">
+        <div class="logo-area">
+            <span class="logo-icon">✈️</span>
+            <h1>Welcome to<br />Easy Travel</h1>
+            <p class="tagline">Your journey starts here</p>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="alert('Login coming soon!')">Log In</button>
+            <div class="divider">or</div>
+            <button class="btn btn-ghost" onclick="goToPage2()">Continue as a Guest</button>
+        </div>
+    </div>
+
+    <!-- PAGE 2: Choose a City -->
+    <div class="page hidden" id="page2">
+        <div class="page-2-inner">
+            <button class="back-btn" onclick="goToPage1()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Back
+            </button>
+
+            <p class="section-label">Destination</p>
+            <h2>Choose a City</h2>
+
+            <div class="city-card" onclick="alert('Bloemfontein selected!')">
+                <div class="city-icon">🌅</div>
+                <div class="city-info">
+                    <div class="city-name">Bloemfontein</div>
+                    <div class="city-sub">Free State, South Africa</div>
+                </div>
+                <svg class="city-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Starfield
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function initStars() {
+            stars = Array.from({ length: 130 }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 1.2 + .2,
+                a: Math.random(),
+                speed: Math.random() * .004 + .001,
+                phase: Math.random() * Math.PI * 2,
+            }));
+        }
+
+        function drawStars(t) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(s => {
+                s.a = .3 + .7 * (.5 + .5 * Math.sin(t * s.speed + s.phase));
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(200,215,255,${s.a})`;
+                ctx.fill();
+            });
+            requestAnimationFrame(drawStars);
+        }
+
+        resize();
+        initStars();
+        requestAnimationFrame(drawStars);
+        window.addEventListener('resize', () => { resize(); initStars(); });
+
+        // Navigation
+        function goToPage2() {
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').classList.remove('hidden');
+        }
+
+        function goToPage1() {
+            document.getElementById('page2').classList.add('hidden');
+            document.getElementById('page1').classList.remove('hidden');
+        }
+    </script>
+</body>
+
+</html>
