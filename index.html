@@ -40,7 +40,6 @@
             overflow: hidden;
         }
 
-        /* ── Starfield ── */
         canvas#stars {
             position: fixed;
             inset: 0;
@@ -48,7 +47,6 @@
             pointer-events: none;
         }
 
-        /* ── Pages ── */
         .page {
             position: fixed;
             inset: 0;
@@ -57,16 +55,17 @@
             align-items: center;
             justify-content: center;
             z-index: 1;
-            transition: opacity .55s ease, transform .55s ease;
+            transition: opacity .5s ease, transform .5s ease;
+            overflow-y: auto;
+            padding: 24px 0;
         }
 
         .page.hidden {
             opacity: 0;
             pointer-events: none;
-            transform: translateY(30px);
+            transform: translateY(28px);
         }
 
-        /* ── Noise overlay ── */
         body::before {
             content: '';
             position: fixed;
@@ -78,7 +77,6 @@
             opacity: .6;
         }
 
-        /* ── Glow blob ── */
         .blob {
             position: fixed;
             border-radius: 50%;
@@ -115,30 +113,43 @@
             }
         }
 
-        /* ── PAGE 1 ── */
-        .logo-area {
-            text-align: center;
-            margin-bottom: 52px;
-            animation: fadeUp .8s ease both;
+        .inner {
+            width: 100%;
+            max-width: 420px;
+            padding: 0 24px;
         }
 
-        .logo-icon {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 16px;
-            animation: floatY 4s ease-in-out infinite;
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-family: 'DM Sans', sans-serif;
+            font-size: .88rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 40px;
+            transition: color .2s;
+            padding: 0;
         }
 
-        @keyframes floatY {
+        .back-btn:hover {
+            color: var(--text);
+        }
 
-            0%,
-            100% {
-                transform: translateY(0);
-            }
+        .back-btn svg {
+            width: 16px;
+            height: 16px;
+        }
 
-            50% {
-                transform: translateY(-8px);
-            }
+        .section-label {
+            font-size: .72rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
         }
 
         h1 {
@@ -146,11 +157,18 @@
             font-size: clamp(2.2rem, 5vw, 3.4rem);
             font-weight: 700;
             letter-spacing: -.5px;
+            line-height: 1.15;
             background: linear-gradient(135deg, var(--text) 40%, var(--accent2));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            line-height: 1.15;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 28px;
         }
 
         .tagline {
@@ -167,7 +185,6 @@
             gap: 14px;
             width: 100%;
             max-width: 320px;
-            animation: fadeUp .8s .2s ease both;
         }
 
         .btn {
@@ -179,7 +196,7 @@
             cursor: pointer;
             border: none;
             letter-spacing: .3px;
-            transition: transform .2s, box-shadow .2s, background .2s;
+            transition: transform .2s, box-shadow .2s;
             position: relative;
             overflow: hidden;
         }
@@ -224,141 +241,6 @@
             box-shadow: 0 6px 24px rgba(79, 142, 247, .1);
         }
 
-        /* ── PAGE 2 ── */
-        .page-2-inner {
-            width: 100%;
-            max-width: 400px;
-            padding: 0 24px;
-        }
-
-        .back-btn {
-            background: none;
-            border: none;
-            color: var(--muted);
-            font-family: 'DM Sans', sans-serif;
-            font-size: .88rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 40px;
-            transition: color .2s;
-            padding: 0;
-        }
-
-        .back-btn:hover {
-            color: var(--text);
-        }
-
-        .back-btn svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .section-label {
-            font-size: .75rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 10px;
-            animation: fadeUp .6s ease both;
-        }
-
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.9rem, 4vw, 2.6rem);
-            font-weight: 700;
-            margin-bottom: 32px;
-            animation: fadeUp .6s .1s ease both;
-        }
-
-        .city-card {
-            background: var(--card);
-            border: 1.5px solid var(--border);
-            border-radius: var(--radius-xl);
-            padding: 22px 26px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            cursor: pointer;
-            transition: transform .25s, box-shadow .25s, border-color .25s;
-            animation: fadeUp .6s .2s ease both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .city-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(79, 142, 247, .06), transparent 60%);
-            opacity: 0;
-            transition: opacity .3s;
-        }
-
-        .city-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 40px rgba(79, 142, 247, .15);
-            border-color: var(--accent);
-        }
-
-        .city-card:hover::before {
-            opacity: 1;
-        }
-
-        .city-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, var(--accent), #3a6fd8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-            box-shadow: 0 4px 18px rgba(79, 142, 247, .35);
-        }
-
-        .city-info {
-            flex: 1;
-        }
-
-        .city-name {
-            font-size: 1.15rem;
-            font-weight: 500;
-        }
-
-        .city-sub {
-            font-size: .8rem;
-            color: var(--muted);
-            margin-top: 3px;
-        }
-
-        .city-arrow {
-            color: var(--muted);
-            transition: transform .25s, color .25s;
-        }
-
-        .city-card:hover .city-arrow {
-            transform: translateX(4px);
-            color: var(--accent);
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(22px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Divider */
         .divider {
             display: flex;
             align-items: center;
@@ -375,6 +257,306 @@
             height: 1px;
             background: var(--border);
         }
+
+        .logo-area {
+            text-align: center;
+            margin-bottom: 52px;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 16px;
+            animation: floatY 4s ease-in-out infinite;
+        }
+
+        @keyframes floatY {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* ── Selectable cards ── */
+        .select-card {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            transition: transform .25s, box-shadow .25s, border-color .25s;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+
+        .select-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(79, 142, 247, .07), transparent 60%);
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        .select-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(79, 142, 247, .14);
+            border-color: var(--accent);
+        }
+
+        .select-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent), #3a6fd8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(79, 142, 247, .3);
+        }
+
+        .card-info {
+            flex: 1;
+        }
+
+        .card-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .card-sub {
+            font-size: .78rem;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        .card-arrow {
+            color: var(--muted);
+            transition: transform .25s, color .25s;
+        }
+
+        .select-card:hover .card-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        /* ── Transport grid ── */
+        .transport-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .transport-btn {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 30px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: transform .25s, box-shadow .25s, border-color .25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .transport-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, rgba(79, 142, 247, .08), transparent 60%);
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        .transport-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 40px rgba(79, 142, 247, .18);
+            border-color: var(--accent);
+        }
+
+        .transport-btn:hover::before {
+            opacity: 1;
+        }
+
+        .transport-icon {
+            font-size: 2.4rem;
+        }
+
+        .transport-label {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: .3px;
+        }
+
+        /* ── Info pages ── */
+        .info-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .info-header-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent), #3a6fd8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(79, 142, 247, .3);
+        }
+
+        .info-header-text p {
+            font-size: .8rem;
+            color: var(--muted);
+        }
+
+        .hub-card {
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px 22px;
+            margin-bottom: 14px;
+            transition: border-color .2s;
+        }
+
+        .hub-card:hover {
+            border-color: rgba(79, 142, 247, .4);
+        }
+
+        .hub-name {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .hub-badge {
+            font-size: .75rem;
+            background: rgba(79, 142, 247, .15);
+            color: var(--accent);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 400;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: .9rem;
+        }
+
+        .info-row+.info-row {
+            border-top: 1px solid rgba(42, 48, 69, .7);
+        }
+
+        .info-row-label {
+            color: var(--muted);
+            font-size: .72rem;
+            font-weight: 500;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            min-width: 88px;
+            padding-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .info-row-value {
+            color: var(--text);
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .info-row-value a {
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color .2s;
+        }
+
+        .info-row-value a:hover {
+            color: var(--accent2);
+            text-decoration: underline;
+        }
+
+        .info-row-value a svg {
+            width: 12px;
+            height: 12px;
+            flex-shrink: 0;
+        }
+
+        .fare-badge {
+            display: inline-block;
+            background: rgba(79, 142, 247, .12);
+            color: var(--accent);
+            border: 1px solid rgba(79, 142, 247, .25);
+            border-radius: 10px;
+            padding: 3px 12px;
+            font-weight: 600;
+            font-size: .92rem;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .a1 {
+            animation: fadeUp .5s .05s ease both;
+        }
+
+        .a2 {
+            animation: fadeUp .5s .12s ease both;
+        }
+
+        .a3 {
+            animation: fadeUp .5s .19s ease both;
+        }
+
+        .a4 {
+            animation: fadeUp .5s .26s ease both;
+        }
+
+        .a5 {
+            animation: fadeUp .5s .33s ease both;
+        }
     </style>
 </head>
 
@@ -384,42 +566,39 @@
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
 
-    <!-- PAGE 1: Welcome -->
+    <!-- ══ PAGE 1: Welcome ══ -->
     <div class="page" id="page1">
-        <div class="logo-area">
+        <div class="logo-area a1">
             <span class="logo-icon">✈️</span>
             <h1>Welcome to<br />Easy Travel</h1>
             <p class="tagline">Your journey starts here</p>
         </div>
-
-        <div class="btn-group">
+        <div class="btn-group a2">
             <button class="btn btn-primary" onclick="alert('Login coming soon!')">Log In</button>
             <div class="divider">or</div>
-            <button class="btn btn-ghost" onclick="goToPage2()">Continue as a Guest</button>
+            <button class="btn btn-ghost" onclick="nav('page1','page2')">Continue as a Guest</button>
         </div>
     </div>
 
-    <!-- PAGE 2: Choose a City -->
+    <!-- ══ PAGE 2: Choose a City ══ -->
     <div class="page hidden" id="page2">
-        <div class="page-2-inner">
-            <button class="back-btn" onclick="goToPage1()">
+        <div class="inner">
+            <button class="back-btn a1" onclick="nav('page2','page1')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
                     <polyline points="15 18 9 12 15 6" />
                 </svg>
                 Back
             </button>
-
-            <p class="section-label">Destination</p>
-            <h2>Choose a City</h2>
-
-            <div class="city-card" onclick="alert('Bloemfontein selected!')">
-                <div class="city-icon">🌅</div>
-                <div class="city-info">
-                    <div class="city-name">Bloemfontein</div>
-                    <div class="city-sub">Free State, South Africa</div>
+            <p class="section-label a1">Destination</p>
+            <h2 class="a2">Choose a City</h2>
+            <div class="select-card a3" onclick="nav('page2','page3')">
+                <div class="card-icon">🌅</div>
+                <div class="card-info">
+                    <div class="card-name">Bloemfontein</div>
+                    <div class="card-sub">Free State, South Africa</div>
                 </div>
-                <svg class="city-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                <svg class="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="9 18 15 12 9 6" />
                 </svg>
@@ -427,54 +606,259 @@
         </div>
     </div>
 
+    <!-- ══ PAGE 3: Choose Transport ══ -->
+    <div class="page hidden" id="page3">
+        <div class="inner">
+            <button class="back-btn a1" onclick="nav('page3','page2')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Back
+            </button>
+            <p class="section-label a1">Bloemfontein</p>
+            <h2 class="a2">How are you<br />getting there?</h2>
+            <div class="transport-grid a3">
+                <div class="transport-btn" onclick="nav('page3','page4taxi')">
+                    <span class="transport-icon">🚕</span>
+                    <span class="transport-label">Taxi</span>
+                </div>
+                <div class="transport-btn" onclick="nav('page3','page4bus')">
+                    <span class="transport-icon">🚌</span>
+                    <span class="transport-label">Bus</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ PAGE 4a: Taxi Info ══ -->
+    <div class="page hidden" id="page4taxi" style="justify-content:flex-start;padding-top:48px;">
+        <div class="inner">
+            <button class="back-btn a1" onclick="nav('page4taxi','page3')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Back
+            </button>
+            <div class="info-header a2">
+                <div class="info-header-icon">🚕</div>
+                <div class="info-header-text">
+                    <h2 style="font-size:1.6rem;margin-bottom:4px;">Taxi Hubs</h2>
+                    <p>Bloemfontein, Free State</p>
+                </div>
+            </div>
+
+            <div class="hub-card a3">
+                <div class="hub-name">Bloemfontein Central Taxi Rank <span class="hub-badge">Main</span></div>
+                <div class="info-row">
+                    <span class="info-row-label">Hub Name</span>
+                    <span class="info-row-value">Bloemfontein Central Taxi Rank</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-row-label">Location</span>
+                    <span class="info-row-value">
+                        <a href="https://maps.google.com/?q=Bloemfontein+Central+Taxi+Rank" target="_blank">
+                            View on Google Maps
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="info-row-label">Fair Price</span>
+                    <span class="info-row-value"><span class="fare-badge">R 15 – R 25</span></span>
+                </div>
+            </div>
+
+            <div class="hub-card a4">
+                <div class="hub-name">Mangaung Taxi Rank <span class="hub-badge">Township</span></div>
+                <div class="info-row">
+                    <span class="info-row-label">Hub Name</span>
+                    <span class="info-row-value">Mangaung Taxi Rank</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-row-label">Location</span>
+                    <span class="info-row-value">
+                        <a href="https://maps.google.com/?q=Mangaung+Taxi+Rank+Bloemfontein" target="_blank">
+                            View on Google Maps
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="info-row-label">Fair Price</span>
+                    <span class="info-row-value"><span class="fare-badge">R 12 – R 20</span></span>
+                </div>
+            </div>
+
+            <div class="hub-card a5">
+                <div class="hub-name">Bram Fischer Airport Rank <span class="hub-badge">Airport</span></div>
+                <div class="info-row">
+                    <span class="info-row-label">Hub Name</span>
+                    <span class="info-row-value">Bram Fischer Airport Taxi Rank</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-row-label">Location</span>
+                    <span class="info-row-value">
+                        <a href="https://maps.google.com/?q=Bram+Fischer+International+Airport+Bloemfontein"
+                            target="_blank">
+                            View on Google Maps
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="info-row-label">Fair Price</span>
+                    <span class="info-row-value"><span class="fare-badge">R 80 – R 150</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ PAGE 4b: Bus Info ══ -->
+    <div class="page hidden" id="page4bus" style="justify-content:flex-start;padding-top:48px;">
+        <div class="inner">
+            <button class="back-btn a1" onclick="nav('page4bus','page3')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Back
+            </button>
+            <div class="info-header a2">
+                <div class="info-header-icon">🚌</div>
+                <div class="info-header-text">
+                    <h2 style="font-size:1.6rem;margin-bottom:4px;">Bus Hubs</h2>
+                    <p>Bloemfontein, Free State</p>
+                </div>
+            </div>
+
+            <div class="hub-card a3">
+                <div class="hub-name">Park Road Bus Terminal <span class="hub-badge">Main</span></div>
+                <div class="info-row">
+                    <span class="info-row-label">Hub Name</span>
+                    <span class="info-row-value">Bloemfontein Park Road Bus Terminal</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-row-label">Location</span>
+                    <span class="info-row-value">
+                        <a href="https://maps.google.com/?q=Park+Road+Bus+Terminal+Bloemfontein" target="_blank">
+                            View on Google Maps
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="info-row-label">Fair Price</span>
+                    <span class="info-row-value"><span class="fare-badge">R 200 – R 350</span></span>
+                </div>
+            </div>
+
+            <div class="hub-card a4">
+                <div class="hub-name">Greyhound Bloemfontein <span class="hub-badge">Intercity</span></div>
+                <div class="info-row">
+                    <span class="info-row-label">Hub Name</span>
+                    <span class="info-row-value">Greyhound Bus Stop – Bloemfontein</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-row-label">Location</span>
+                    <span class="info-row-value">
+                        <a href="https://maps.google.com/?q=Greyhound+Bus+Stop+Bloemfontein" target="_blank">
+                            View on Google Maps
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="info-row-label">Fair Price</span>
+                    <span class="info-row-value"><span class="fare-badge">R 250 – R 450</span></span>
+                </div>
+            </div>
+
+            <div class="hub-card a5">
+                <div class="hub-name">Translux Terminal <span class="hub-badge">Intercity</span></div>
+                <div class="info-row">
+                    <span class="info-row-label">Hub Name</span>
+                    <span class="info-row-value">Translux Bus Terminal – Bloemfontein</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-row-label">Location</span>
+                    <span class="info-row-value">
+                        <a href="https://maps.google.com/?q=Translux+Bus+Terminal+Bloemfontein" target="_blank">
+                            View on Google Maps
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="info-row-label">Fair Price</span>
+                    <span class="info-row-value"><span class="fare-badge">R 180 – R 380</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Starfield
+        /* ── Starfield ── */
         const canvas = document.getElementById('stars');
         const ctx = canvas.getContext('2d');
         let stars = [];
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
+        function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
         function initStars() {
             stars = Array.from({ length: 130 }, () => ({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                r: Math.random() * 1.2 + .2,
-                a: Math.random(),
-                speed: Math.random() * .004 + .001,
-                phase: Math.random() * Math.PI * 2,
+                x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                r: Math.random() * 1.2 + .2, a: Math.random(),
+                speed: Math.random() * .004 + .001, phase: Math.random() * Math.PI * 2,
             }));
         }
-
         function drawStars(t) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             stars.forEach(s => {
                 s.a = .3 + .7 * (.5 + .5 * Math.sin(t * s.speed + s.phase));
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(200,215,255,${s.a})`;
-                ctx.fill();
+                ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(200,215,255,${s.a})`; ctx.fill();
             });
             requestAnimationFrame(drawStars);
         }
-
-        resize();
-        initStars();
-        requestAnimationFrame(drawStars);
+        resize(); initStars(); requestAnimationFrame(drawStars);
         window.addEventListener('resize', () => { resize(); initStars(); });
 
-        // Navigation
-        function goToPage2() {
-            document.getElementById('page1').classList.add('hidden');
-            document.getElementById('page2').classList.remove('hidden');
-        }
-
-        function goToPage1() {
-            document.getElementById('page2').classList.add('hidden');
-            document.getElementById('page1').classList.remove('hidden');
+        /* ── Navigation ── */
+        function nav(from, to) {
+            document.getElementById(from).classList.add('hidden');
+            const target = document.getElementById(to);
+            target.classList.remove('hidden');
+            target.scrollTop = 0;
         }
     </script>
 </body>
