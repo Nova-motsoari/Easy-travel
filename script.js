@@ -137,6 +137,41 @@ const hubData = {
       { city: 'Pietermaritzburg',  province: 'KwaZulu-Natal' },
       { city: 'Richards Bay',      province: 'KwaZulu-Natal' },
     ]
+  },
+  'hoffman-square': {
+    title: 'Hoffman Square',
+    subtitle: 'Bloemfontein suburbs served',
+    destinations: [
+      { city: 'Westdene',           province: 'Suburb' },
+      { city: 'Universitas',        province: 'Suburb' },
+      { city: 'Langenhovenpark',    province: 'Suburb' },
+      { city: 'Dan Pienaar',        province: 'Suburb' },
+      { city: 'Wilgehof',           province: 'Suburb' },
+      { city: 'Brandwag',           province: 'Suburb' },
+      { city: 'Fichardt Park',      province: 'Suburb' },
+      { city: 'Pellissier',         province: 'Suburb' },
+      { city: 'Bayswater',          province: 'Suburb' },
+      { city: 'Woodland Hills',     province: 'Suburb' },
+      { city: 'Pentagon Park',      province: 'Suburb' },
+      { city: 'Fauna',              province: 'Suburb' },
+      { city: 'Arboretum',          province: 'Suburb' },
+      { city: 'Ehrlich Park',       province: 'Suburb' },
+      { city: 'Lourier Park',       province: 'Suburb' },
+      { city: 'Heuwelsig',          province: 'Suburb' },
+      { city: 'Gardenia Park',      province: 'Suburb' },
+      { city: 'Uitsig',             province: 'Suburb' },
+      { city: 'Roodewal',           province: 'Suburb' },
+      { city: 'Hilton',             province: 'Suburb' },
+      { city: 'Hospitaalpark',      province: 'Suburb' },
+      { city: 'Fleurdal',           province: 'Suburb' },
+    ]
+  },
+  'langenhoven-taxi': {
+    title: 'Langenhovenpark Taxi Rank',
+    subtitle: 'City centre route',
+    destinations: [
+      { city: 'Bloemfontein Central', province: 'City Centre' },
+    ]
   }
 };
 

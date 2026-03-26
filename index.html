@@ -1,411 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Easy Travel</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
-
 <body>
 
-  <canvas id="stars"></canvas>
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
+<canvas id="stars"></canvas>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
 
-  <!-- ══ PAGE 1: Welcome ══ -->
-  <div class="page" id="page1">
-    <div class="logo-area a1">
-      <div class="logo-mark">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19 4c-2 0-4 2-4 2H7l-1.8 6.3M3 11l1.5 5.5L6 18l2-2 2 2 2-2 2 2" />
-          <line x1="6" y1="22" x2="18" y2="22" />
-        </svg>
-      </div>
-      <h1>Welcome to<br />Easy Travel</h1>
-      <p class="tagline">Your journey starts here</p>
+<!-- ══ PAGE 1: Welcome ══ -->
+<div class="page" id="page1">
+  <div class="logo-area a1">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19 4c-2 0-4 2-4 2H7l-1.8 6.3M3 11l1.5 5.5L6 18l2-2 2 2 2-2 2 2"/>
+        <line x1="6" y1="22" x2="18" y2="22"/>
+      </svg>
     </div>
-    <div class="btn-group a2">
-      <button class="btn btn-primary" onclick="alert('Login coming soon!')">Log In</button>
-      <div class="divider">or</div>
-      <button class="btn btn-ghost" onclick="nav('page1','page2')">Continue as a Guest</button>
+    <h1>Welcome to<br/>Easy Travel</h1>
+    <p class="tagline">Your journey starts here</p>
+  </div>
+  <div class="btn-group a2">
+    <button class="btn btn-primary" onclick="alert('Login coming soon!')">Log In</button>
+    <div class="divider">or</div>
+    <button class="btn btn-ghost" onclick="nav('page1','page2')">Continue as a Guest</button>
+  </div>
+</div>
+
+<!-- ══ PAGE 2: Choose a City ══ -->
+<div class="page hidden" id="page2">
+  <div class="inner">
+    <button class="back-btn a1" onclick="nav('page2','page1')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back
+    </button>
+    <p class="section-label a1">Destination</p>
+    <h2 class="a2">Choose a City</h2>
+    <div class="select-card a3" onclick="nav('page2','page3')">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="card-info">
+        <div class="card-name">Bloemfontein</div>
+        <div class="card-sub">Free State, South Africa</div>
+      </div>
+      <svg class="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </div>
   </div>
+</div>
 
-  <!-- ══ PAGE 2: Choose a City ══ -->
-  <div class="page hidden" id="page2">
-    <div class="inner">
-      <button class="back-btn a1" onclick="nav('page2','page1')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
-        Back
-      </button>
-      <p class="section-label a1">Destination</p>
-      <h2 class="a2">Choose a City</h2>
-      <div class="select-card a3" onclick="nav('page2','page3')">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg>
+<!-- ══ PAGE 3: Choose Transport ══ -->
+<div class="page hidden" id="page3">
+  <div class="inner">
+    <button class="back-btn a1" onclick="nav('page3','page2')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back
+    </button>
+    <p class="section-label a1">Bloemfontein</p>
+    <h2 class="a2">How are you<br/>getting there?</h2>
+    <div class="transport-grid a3">
+      <div class="transport-btn" onclick="nav('page3','page4taxi')">
+        <div class="transport-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
         </div>
-        <div class="card-info">
-          <div class="card-name">Bloemfontein</div>
-          <div class="card-sub">Free State, South Africa</div>
-        </div>
-        <svg class="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6" />
-        </svg>
+        <span class="transport-label">Taxi</span>
       </div>
-    </div>
-  </div>
-
-  <!-- ══ PAGE 3: Choose Transport ══ -->
-  <div class="page hidden" id="page3">
-    <div class="inner">
-      <button class="back-btn a1" onclick="nav('page3','page2')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
-        Back
-      </button>
-      <p class="section-label a1">Bloemfontein</p>
-      <h2 class="a2">How are you<br />getting there?</h2>
-      <div class="transport-grid a3">
-        <div class="transport-btn" onclick="nav('page3','page4taxi')">
-          <div class="transport-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <rect x="1" y="3" width="15" height="13" />
-              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
-              <circle cx="5.5" cy="18.5" r="2.5" />
-              <circle cx="18.5" cy="18.5" r="2.5" />
-            </svg>
-          </div>
-          <span class="transport-label">Taxi</span>
+      <div class="transport-btn" onclick="nav('page3','page4bus')">
+        <div class="transport-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21l2-4M16 21l-2-4"/><line x1="6" y1="17" x2="18" y2="17"/><path d="M6 8h4M14 8h4M6 12h4M14 12h4"/></svg>
         </div>
-        <div class="transport-btn" onclick="nav('page3','page4bus')">
-          <div class="transport-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2" />
-              <path d="M8 21l2-4M16 21l-2-4" />
-              <line x1="6" y1="17" x2="18" y2="17" />
-              <path d="M6 8h4M14 8h4M6 12h4M14 12h4" />
-            </svg>
-          </div>
-          <span class="transport-label">Bus</span>
-        </div>
+        <span class="transport-label">Bus</span>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ══ PAGE 4a: Taxi Info ══ -->
-  <div class="page hidden" id="page4taxi" style="justify-content:flex-start;padding-top:48px;">
-    <div class="inner">
-      <button class="back-btn a1" onclick="nav('page4taxi','page3')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
-        Back
-      </button>
-      <div class="info-header a2">
-        <div class="info-header-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <rect x="1" y="3" width="15" height="13" />
-            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
-            <circle cx="5.5" cy="18.5" r="2.5" />
-            <circle cx="18.5" cy="18.5" r="2.5" />
-          </svg>
-        </div>
-        <div class="info-header-text">
-          <h2 style="font-size:1.6rem;margin-bottom:4px;">Taxi Hubs</h2>
-          <p>Bloemfontein, Free State</p>
-        </div>
+<!-- ══ PAGE 4a: Taxi Info ══ -->
+<div class="page hidden" id="page4taxi" style="justify-content:flex-start;padding-top:48px;">
+  <div class="inner">
+    <button class="back-btn a1" onclick="nav('page4taxi','page3')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back
+    </button>
+    <div class="info-header a2">
+      <div class="info-header-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
       </div>
-
-      <!-- Hub 1 -->
-      <div class="hub-card a3">
-        <div class="hub-name">Bloemfontein Central Taxi Rank <span class="hub-badge">Main</span></div>
-        <div class="info-row">
-          <span class="info-row-label">Hub Name</span>
-          <span class="info-row-value">Bloemfontein Central Taxi Rank</span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Location</span>
-          <span class="info-row-value">
-            <a href="https://maps.google.com/?q=Bloemfontein+Central+Taxi+Rank" target="_blank">
-              View on Google Maps
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-            </a>
-          </span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Fair Price</span>
-          <span class="info-row-value"><span class="fare-badge">R 15 – R 25</span></span>
-        </div>
-        <div class="see-more-row">
-          <button class="see-more-btn" onclick="openModal('central-taxi')">
-            See more details
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Hub 2 -->
-      <div class="hub-card a4">
-        <div class="hub-name">Mangaung Taxi Rank <span class="hub-badge">Township</span></div>
-        <div class="info-row">
-          <span class="info-row-label">Hub Name</span>
-          <span class="info-row-value">Mangaung Taxi Rank</span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Location</span>
-          <span class="info-row-value">
-            <a href="https://maps.google.com/?q=Mangaung+Taxi+Rank+Bloemfontein" target="_blank">
-              View on Google Maps
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-            </a>
-          </span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Fair Price</span>
-          <span class="info-row-value"><span class="fare-badge">R 12 – R 20</span></span>
-        </div>
-        <div class="see-more-row">
-          <button class="see-more-btn" onclick="openModal('mangaung-taxi')">
-            See more details
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Hub 3 -->
-      <div class="hub-card a5">
-        <div class="hub-name">Bram Fischer Airport Rank <span class="hub-badge">Airport</span></div>
-        <div class="info-row">
-          <span class="info-row-label">Hub Name</span>
-          <span class="info-row-value">Bram Fischer Airport Taxi Rank</span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Location</span>
-          <span class="info-row-value">
-            <a href="https://maps.google.com/?q=Bram+Fischer+International+Airport+Bloemfontein" target="_blank">
-              View on Google Maps
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-            </a>
-          </span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Fair Price</span>
-          <span class="info-row-value"><span class="fare-badge">R 80 – R 150</span></span>
-        </div>
-        <div class="see-more-row">
-          <button class="see-more-btn" onclick="openModal('airport-taxi')">
-            See more details
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
-        </div>
+      <div class="info-header-text">
+        <h2 style="font-size:1.6rem;margin-bottom:4px;">Taxi Hubs</h2>
+        <p>Bloemfontein, Free State</p>
       </div>
     </div>
-  </div>
 
-  <!-- ══ PAGE 4b: Bus Info ══ -->
-  <div class="page hidden" id="page4bus" style="justify-content:flex-start;padding-top:48px;">
-    <div class="inner">
-      <button class="back-btn a1" onclick="nav('page4bus','page3')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
-        Back
-      </button>
-      <div class="info-header a2">
-        <div class="info-header-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2" />
-            <path d="M8 21l2-4M16 21l-2-4" />
-            <line x1="6" y1="17" x2="18" y2="17" />
-            <path d="M6 8h4M14 8h4M6 12h4M14 12h4" />
-          </svg>
-        </div>
-        <div class="info-header-text">
-          <h2 style="font-size:1.6rem;margin-bottom:4px;">Bus Hubs</h2>
-          <p>Bloemfontein, Free State</p>
-        </div>
+    <!-- Hub 1 -->
+    <div class="hub-card a3">
+      <div class="hub-name">Bloemfontein Central Taxi Rank <span class="hub-badge">Main</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Hub Name</span>
+        <span class="info-row-value">Bloemfontein Central Taxi Rank</span>
       </div>
-
-      <!-- Hub 1 -->
-      <div class="hub-card a3">
-        <div class="hub-name">Park Road Bus Terminal <span class="hub-badge">Main</span></div>
-        <div class="info-row">
-          <span class="info-row-label">Hub Name</span>
-          <span class="info-row-value">Bloemfontein Park Road Bus Terminal</span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Location</span>
-          <span class="info-row-value">
-            <a href="https://maps.google.com/?q=Park+Road+Bus+Terminal+Bloemfontein" target="_blank">
-              View on Google Maps
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-            </a>
-          </span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Fair Price</span>
-          <span class="info-row-value"><span class="fare-badge">R 200 – R 350</span></span>
-        </div>
-        <div class="see-more-row">
-          <button class="see-more-btn" onclick="openModal('park-road')">
-            See more details
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
-        </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.google.com/?q=Bloemfontein+Central+Taxi+Rank" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
       </div>
-
-      <!-- Hub 2 -->
-      <div class="hub-card a4">
-        <div class="hub-name">Greyhound Bloemfontein <span class="hub-badge">Intercity</span></div>
-        <div class="info-row">
-          <span class="info-row-label">Hub Name</span>
-          <span class="info-row-value">Greyhound Bus Stop – Bloemfontein</span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Location</span>
-          <span class="info-row-value">
-            <a href="https://maps.google.com/?q=Greyhound+Bus+Stop+Bloemfontein" target="_blank">
-              View on Google Maps
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-            </a>
-          </span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Fair Price</span>
-          <span class="info-row-value"><span class="fare-badge">R 250 – R 450</span></span>
-        </div>
-        <div class="see-more-row">
-          <button class="see-more-btn" onclick="openModal('greyhound')">
-            See more details
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
-        </div>
+      <div class="info-row">
+        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-value"><span class="fare-badge">R 15 – R 25</span></span>
       </div>
-
-      <!-- Hub 3 -->
-      <div class="hub-card a5">
-        <div class="hub-name">Translux Terminal <span class="hub-badge">Intercity</span></div>
-        <div class="info-row">
-          <span class="info-row-label">Hub Name</span>
-          <span class="info-row-value">Translux Bus Terminal – Bloemfontein</span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Location</span>
-          <span class="info-row-value">
-            <a href="https://maps.google.com/?q=Translux+Bus+Terminal+Bloemfontein" target="_blank">
-              View on Google Maps
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-            </a>
-          </span>
-        </div>
-        <div class="info-row">
-          <span class="info-row-label">Fair Price</span>
-          <span class="info-row-value"><span class="fare-badge">R 180 – R 380</span></span>
-        </div>
-        <div class="see-more-row">
-          <button class="see-more-btn" onclick="openModal('translux')">
-            See more details
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ MODAL ══ -->
-  <div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
-    <div class="modal" id="modalBox">
-      <div class="modal-handle"></div>
-      <div class="modal-header">
-        <div>
-          <div class="modal-title" id="modalTitle">Destinations</div>
-          <div class="modal-subtitle" id="modalSubtitle"></div>
-        </div>
-        <button class="modal-close" onclick="closeModal()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-            stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
+      <div class="see-more-row">
+        <button class="see-more-btn" onclick="openModal('central-taxi')">
+          See more details
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
-      <div class="modal-body">
-        <div class="dest-grid" id="modalDestinations"></div>
+    </div>
+
+    <!-- Hub 2 -->
+    <div class="hub-card a4">
+      <div class="hub-name">Mangaung Taxi Rank <span class="hub-badge">Township</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Hub Name</span>
+        <span class="info-row-value">Mangaung Taxi Rank</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.google.com/?q=Mangaung+Taxi+Rank+Bloemfontein" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-value"><span class="fare-badge">R 12 – R 20</span></span>
+      </div>
+      <div class="see-more-row">
+        <button class="see-more-btn" onclick="openModal('mangaung-taxi')">
+          See more details
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hub 3 -->
+    <div class="hub-card a5">
+      <div class="hub-name">Bram Fischer Airport Rank <span class="hub-badge">Airport</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Hub Name</span>
+        <span class="info-row-value">Bram Fischer Airport Taxi Rank</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.google.com/?q=Bram+Fischer+International+Airport+Bloemfontein" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-value"><span class="fare-badge">R 80 – R 150</span></span>
+      </div>
+      <div class="see-more-row">
+        <button class="see-more-btn" onclick="openModal('airport-taxi')">
+          See more details
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hub 4 -->
+    <div class="hub-card a5">
+      <div class="hub-name">Langenhovenpark Taxi Rank <span class="hub-badge">Suburb</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Hub Name</span>
+        <span class="info-row-value">Langenhovenpark Taxi Rank</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.app.goo.gl/ZqX8qLHJj5gxZYu48" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-value"><span class="fare-badge">R 15</span></span>
+      </div>
+      <div class="see-more-row">
+        <button class="see-more-btn" onclick="openModal('langenhoven-taxi')">
+          See more details
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
     </div>
   </div>
+</div>
 
-  <script src="script.js"></script>
+<!-- ══ PAGE 4b: Bus Info ══ -->
+<div class="page hidden" id="page4bus" style="justify-content:flex-start;padding-top:48px;">
+  <div class="inner">
+    <button class="back-btn a1" onclick="nav('page4bus','page3')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back
+    </button>
+    <div class="info-header a2">
+      <div class="info-header-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21l2-4M16 21l-2-4"/><line x1="6" y1="17" x2="18" y2="17"/><path d="M6 8h4M14 8h4M6 12h4M14 12h4"/></svg>
+      </div>
+      <div class="info-header-text">
+        <h2 style="font-size:1.6rem;margin-bottom:4px;">Bus Hubs</h2>
+        <p>Bloemfontein, Free State</p>
+      </div>
+    </div>
+
+    <!-- Hub 1 -->
+    <div class="hub-card a3">
+      <div class="hub-name">Park Road Bus Terminal <span class="hub-badge">Main</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Hub Name</span>
+        <span class="info-row-value">Bloemfontein Park Road Bus Terminal</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.google.com/?q=Park+Road+Bus+Terminal+Bloemfontein" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-value"><span class="fare-badge">R 200 – R 350</span></span>
+      </div>
+      <div class="see-more-row">
+        <button class="see-more-btn" onclick="openModal('park-road')">
+          See more details
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hub 2 -->
+    <div class="hub-card a4">
+      <div class="hub-name">Greyhound Bloemfontein <span class="hub-badge">Intercity</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Hub Name</span>
+        <span class="info-row-value">Greyhound Bus Stop – Bloemfontein</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.google.com/?q=Greyhound+Bus+Stop+Bloemfontein" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-value"><span class="fare-badge">R 250 – R 450</span></span>
+      </div>
+      <div class="see-more-row">
+        <button class="see-more-btn" onclick="openModal('greyhound')">
+          See more details
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hub 3 -->
+    <div class="hub-card a5">
+      <div class="hub-name">Translux Terminal <span class="hub-badge">Intercity</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Hub Name</span>
+        <span class="info-row-value">Translux Bus Terminal – Bloemfontein</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.google.com/?q=Translux+Bus+Terminal+Bloemfontein" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-value"><span class="fare-badge">R 180 – R 380</span></span>
+      </div>
+      <div class="see-more-row">
+        <button class="see-more-btn" onclick="openModal('translux')">
+          See more details
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hub 4 -->
+    <div class="hub-card a5">
+      <div class="hub-name">Hoffman Square <span class="hub-badge">Local</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Hub Name</span>
+        <span class="info-row-value">Hoffman Square Bus Hub</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.app.goo.gl/7mDJfxw3zePH3Ku29" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-value"><span class="fare-badge">R 13</span></span>
+      </div>
+      <div class="see-more-row">
+        <button class="see-more-btn" onclick="openModal('hoffman-square')">
+          See more details
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL ══ -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modalTitle">Destinations</div>
+        <div class="modal-subtitle" id="modalSubtitle"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="dest-grid" id="modalDestinations"></div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
-
 </html>
