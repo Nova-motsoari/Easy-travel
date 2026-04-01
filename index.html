@@ -13,6 +13,26 @@
 <div class="blob blob-1"></div>
 <div class="blob blob-2"></div>
 
+<!-- ══ Theme Toggle ══ -->
+<button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+  <!-- Moon icon (shown in dark mode) -->
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+  <!-- Sun icon (shown in light mode) -->
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="5"/>
+    <line x1="12" y1="1" x2="12" y2="3"/>
+    <line x1="12" y1="21" x2="12" y2="23"/>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+    <line x1="1" y1="12" x2="3" y2="12"/>
+    <line x1="21" y1="12" x2="23" y2="12"/>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+  </svg>
+</button>
+
 <!-- ══ PAGE 1: Welcome ══ -->
 <div class="page" id="page1">
   <div class="logo-area a1">
@@ -114,7 +134,7 @@
         </span>
       </div>
       <div class="info-row">
-        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-label">Est. Fair Price</span>
         <span class="info-row-value"><span class="fare-badge">R 15 – R 25</span></span>
       </div>
       <div class="see-more-row">
@@ -142,7 +162,7 @@
         </span>
       </div>
       <div class="info-row">
-        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-label">Est. Fair Price</span>
         <span class="info-row-value"><span class="fare-badge">R 12 – R 20</span></span>
       </div>
       <div class="see-more-row">
@@ -170,7 +190,7 @@
         </span>
       </div>
       <div class="info-row">
-        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-label">Est. Fair Price</span>
         <span class="info-row-value"><span class="fare-badge">R 80 – R 150</span></span>
       </div>
       <div class="see-more-row">
@@ -198,7 +218,7 @@
         </span>
       </div>
       <div class="info-row">
-        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-label">Est. Fair Price</span>
         <span class="info-row-value"><span class="fare-badge">R 15</span></span>
       </div>
       <div class="see-more-row">
@@ -228,7 +248,7 @@
       </div>
     </div>
 
-    <!-- Hub 1 -->
+    <!-- Hub 1: Park Road -->
     <div class="hub-card a3">
       <div class="hub-name">Park Road Bus Terminal <span class="hub-badge">Main</span></div>
       <div class="info-row">
@@ -245,8 +265,17 @@
         </span>
       </div>
       <div class="info-row">
-        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-label">Est. Fair Price</span>
         <span class="info-row-value"><span class="fare-badge">R 200 – R 350</span></span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Official Site</span>
+        <span class="info-row-value">
+          <a href="https://www.sa-venues.com/travel/bloemfontein-bus.php" target="_blank">
+            sa-venues.com
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
       </div>
       <div class="see-more-row">
         <button class="see-more-btn" onclick="openModal('park-road')">
@@ -256,7 +285,7 @@
       </div>
     </div>
 
-    <!-- Hub 2 -->
+    <!-- Hub 2: Greyhound -->
     <div class="hub-card a4">
       <div class="hub-name">Greyhound Bloemfontein <span class="hub-badge">Intercity</span></div>
       <div class="info-row">
@@ -273,8 +302,17 @@
         </span>
       </div>
       <div class="info-row">
-        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-label">Est. Fair Price</span>
         <span class="info-row-value"><span class="fare-badge">R 250 – R 450</span></span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Official Site</span>
+        <span class="info-row-value">
+          <a href="https://www.greyhound.co.za" target="_blank">
+            greyhound.co.za
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
       </div>
       <div class="see-more-row">
         <button class="see-more-btn" onclick="openModal('greyhound')">
@@ -284,7 +322,7 @@
       </div>
     </div>
 
-    <!-- Hub 3 -->
+    <!-- Hub 3: Translux -->
     <div class="hub-card a5">
       <div class="hub-name">Translux Terminal <span class="hub-badge">Intercity</span></div>
       <div class="info-row">
@@ -301,8 +339,17 @@
         </span>
       </div>
       <div class="info-row">
-        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-label">Est. Fair Price</span>
         <span class="info-row-value"><span class="fare-badge">R 180 – R 380</span></span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Official Site</span>
+        <span class="info-row-value">
+          <a href="https://www.translux.co.za" target="_blank">
+            translux.co.za
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
       </div>
       <div class="see-more-row">
         <button class="see-more-btn" onclick="openModal('translux')">
@@ -312,7 +359,7 @@
       </div>
     </div>
 
-    <!-- Hub 4 -->
+    <!-- Hub 4: Hoffman Square -->
     <div class="hub-card a5">
       <div class="hub-name">Hoffman Square <span class="hub-badge">Local</span></div>
       <div class="info-row">
@@ -329,8 +376,17 @@
         </span>
       </div>
       <div class="info-row">
-        <span class="info-row-label">Fair Price</span>
+        <span class="info-row-label">Est. Fair Price</span>
         <span class="info-row-value"><span class="fare-badge">R 13</span></span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Official Site</span>
+        <span class="info-row-value">
+          <a href="https://www.mangaung.co.za/transport" target="_blank">
+            mangaung.co.za
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
       </div>
       <div class="see-more-row">
         <button class="see-more-btn" onclick="openModal('hoffman-square')">

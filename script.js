@@ -3,10 +3,7 @@ const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 let stars = [];
 
-function resize() {
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
-}
+function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
 
 function initStars() {
   stars = Array.from({ length: 130 }, () => ({
@@ -21,20 +18,35 @@ function initStars() {
 
 function drawStars(t) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const isLight = document.body.classList.contains('light');
   stars.forEach(s => {
     s.a = .3 + .7 * (.5 + .5 * Math.sin(t * s.speed + s.phase));
     ctx.beginPath();
     ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(200,215,255,${s.a})`;
+    // In light mode render soft blue-grey dots instead of white
+    ctx.fillStyle = isLight
+      ? `rgba(90,120,200,${s.a * 0.35})`
+      : `rgba(200,215,255,${s.a})`;
     ctx.fill();
   });
   requestAnimationFrame(drawStars);
 }
 
-resize();
-initStars();
-requestAnimationFrame(drawStars);
+resize(); initStars(); requestAnimationFrame(drawStars);
 window.addEventListener('resize', () => { resize(); initStars(); });
+
+/* ── Theme toggle ── */
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+}
+
+// Restore saved theme on load
+(function () {
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+  }
+})();
 
 /* ── Navigation ── */
 function nav(from, to) {
@@ -84,6 +96,13 @@ const hubData = {
       { city: 'Langenhovenpark',   province: 'Bloemfontein' },
       { city: 'Dan Pienaar',       province: 'Bloemfontein' },
       { city: 'Wilgehof',          province: 'Bloemfontein' },
+    ]
+  },
+  'langenhoven-taxi': {
+    title: 'Langenhovenpark Taxi Rank',
+    subtitle: 'City centre route',
+    destinations: [
+      { city: 'Bloemfontein Central', province: 'City Centre' },
     ]
   },
   'park-road': {
@@ -165,13 +184,6 @@ const hubData = {
       { city: 'Hospitaalpark',      province: 'Suburb' },
       { city: 'Fleurdal',           province: 'Suburb' },
     ]
-  },
-  'langenhoven-taxi': {
-    title: 'Langenhovenpark Taxi Rank',
-    subtitle: 'City centre route',
-    destinations: [
-      { city: 'Bloemfontein Central', province: 'City Centre' },
-    ]
   }
 };
 
@@ -181,8 +193,7 @@ function openModal(hubId) {
   if (!data) return;
   document.getElementById('modalTitle').textContent = data.title;
   document.getElementById('modalSubtitle').textContent = data.subtitle;
-  const grid = document.getElementById('modalDestinations');
-  grid.innerHTML = data.destinations.map(d => `
+  document.getElementById('modalDestinations').innerHTML = data.destinations.map(d => `
     <div class="dest-item">
       <div class="dest-city">${d.city}</div>
       <div class="dest-province">${d.province}</div>
@@ -201,6 +212,4 @@ function handleOverlayClick(e) {
   if (e.target === document.getElementById('modal')) closeModal();
 }
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModal();
-});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
