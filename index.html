@@ -82,7 +82,7 @@
       Back
     </button>
     <p class="section-label a1">Bloemfontein</p>
-    <h2 class="a2">How are you<br/>getting there?</h2>
+    <h2 class="a2">What are you<br/>looking for?</h2>
     <div class="transport-grid a3">
       <div class="transport-btn" onclick="nav('page3','page4taxi')">
         <div class="transport-icon-wrap">
@@ -95,6 +95,12 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21l2-4M16 21l-2-4"/><line x1="6" y1="17" x2="18" y2="17"/><path d="M6 8h4M14 8h4M6 12h4M14 12h4"/></svg>
         </div>
         <span class="transport-label">Bus</span>
+      </div>
+      <div class="transport-btn transport-btn-wide" onclick="nav('page3','page4entertainment')">
+        <div class="transport-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <span class="transport-label">Entertainment</span>
       </div>
     </div>
   </div>
@@ -398,7 +404,164 @@
   </div>
 </div>
 
-<!-- ══ MODAL ══ -->
+<!-- ══ PAGE 4c: Entertainment ══ -->
+<div class="page hidden" id="page4entertainment" style="justify-content:flex-start;padding-top:48px;">
+  <div class="inner">
+    <button class="back-btn a1" onclick="nav('page4entertainment','page3')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back
+    </button>
+    <div class="info-header a2">
+      <div class="info-header-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div class="info-header-text">
+        <h2 style="font-size:1.6rem;margin-bottom:4px;">Malls &amp; Entertainment</h2>
+        <p>Bloemfontein, Free State</p>
+      </div>
+    </div>
+
+    <!-- Mimosa Mall -->
+    <div class="hub-card a3">
+      <div class="hub-name">Mimosa Mall <span class="hub-badge">Flagship</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Address</span>
+        <span class="info-row-value">Corner Nelson Mandela Dr &amp; Parfitt Ave, Westdene, Bloemfontein</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.google.com/?q=Mimosa+Mall+Bloemfontein" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Website</span>
+        <span class="info-row-value"><a href="https://www.mimosa.co.za" target="_blank">mimosa.co.za <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></span>
+      </div>
+    </div>
+
+    <!-- Waterfront Mall -->
+    <div class="hub-card a3">
+      <div class="hub-name">Waterfront Mall <span class="hub-badge">Retail</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Address</span>
+        <span class="info-row-value">Cnr Zastron &amp; Melrose St, Westdene, Bloemfontein</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.google.com/?q=Waterfront+Mall+Bloemfontein" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Website</span>
+        <span class="info-row-value"><a href="https://www.waterfront.co.za" target="_blank">waterfront.co.za <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></span>
+      </div>
+    </div>
+
+    <!-- Loch Logan Waterfront -->
+    <div class="hub-card a4">
+      <div class="hub-name">Loch Logan Waterfront <span class="hub-badge">Lifestyle</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Address</span>
+        <span class="info-row-value">1 Loch Logan Waterfront, Henry St, Bloemfontein</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.google.com/?q=Loch+Logan+Waterfront+Bloemfontein" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Website</span>
+        <span class="info-row-value"><a href="https://www.lochlogan.co.za" target="_blank">lochlogan.co.za <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></span>
+      </div>
+    </div>
+
+    <!-- Kenilworth Centre -->
+    <div class="hub-card a4">
+      <div class="hub-name">Kenilworth Centre <span class="hub-badge">Neighbourhood</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Address</span>
+        <span class="info-row-value">Cnr Kellner &amp; Kestell St, Westdene, Bloemfontein</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.google.com/?q=Kenilworth+Centre+Bloemfontein" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+    </div>
+
+    <!-- Preller Square -->
+    <div class="hub-card a5">
+      <div class="hub-name">Preller Square <span class="hub-badge">Neighbourhood</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Address</span>
+        <span class="info-row-value">Preller St, Westdene, Bloemfontein</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.google.com/?q=Preller+Square+Bloemfontein" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+    </div>
+
+    <!-- Bloem Plaza -->
+    <div class="hub-card a5">
+      <div class="hub-name">Bloem Plaza <span class="hub-badge">Retail</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Address</span>
+        <span class="info-row-value">Cnr East Burger &amp; Charlotte Maxeke St, Bloemfontein CBD</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.google.com/?q=Bloem+Plaza+Bloemfontein" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+    </div>
+
+    <!-- Vista Mall -->
+    <div class="hub-card a5">
+      <div class="hub-name">Vista Mall <span class="hub-badge">Township</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Address</span>
+        <span class="info-row-value">Cnr Chris Hani &amp; Mabula Rd, Mangaung, Bloemfontein</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="https://maps.google.com/?q=Vista+Mall+Mangaung+Bloemfontein" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: Destinations ══ -->
 <div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
   <div class="modal" id="modalBox">
     <div class="modal-handle"></div>
@@ -416,6 +579,60 @@
     </div>
   </div>
 </div>
+
+<!-- ══ ADMIN MODAL: Add Hub (Ctrl+A) ══ -->
+<div class="modal-overlay" id="adminModal" onclick="handleAdminOverlayClick(event)">
+  <div class="modal admin-modal">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Add New Hub</div>
+        <div class="modal-subtitle" id="adminModalSubtitle">Adding to Taxi Hubs</div>
+      </div>
+      <button class="modal-close" onclick="closeAdminModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- Tab switcher -->
+      <div class="admin-tabs">
+        <button class="admin-tab active" id="tabTaxi" onclick="switchAdminTab('taxi')">Taxi</button>
+        <button class="admin-tab" id="tabBus" onclick="switchAdminTab('bus')">Bus</button>
+      </div>
+
+      <div class="admin-form">
+        <div class="admin-field">
+          <label class="admin-label">Hub Name</label>
+          <input class="admin-input" id="adminName" type="text" placeholder="e.g. Stadium Taxi Rank"/>
+        </div>
+        <div class="admin-field">
+          <label class="admin-label">Badge / Type</label>
+          <input class="admin-input" id="adminBadge" type="text" placeholder="e.g. Suburb, Main, Intercity"/>
+        </div>
+        <div class="admin-field">
+          <label class="admin-label">Google Maps Link</label>
+          <input class="admin-input" id="adminMap" type="url" placeholder="https://maps.google.com/..."/>
+        </div>
+        <div class="admin-field">
+          <label class="admin-label">Estimated Fair Price</label>
+          <input class="admin-input" id="adminPrice" type="text" placeholder="e.g. R 15 or R 20 – R 35"/>
+        </div>
+        <div class="admin-field" id="adminSiteField">
+          <label class="admin-label">Official Website (optional)</label>
+          <input class="admin-input" id="adminSite" type="url" placeholder="https://example.co.za"/>
+        </div>
+        <div class="admin-field">
+          <label class="admin-label">Destinations (one per line)</label>
+          <textarea class="admin-input admin-textarea" id="adminDests" placeholder="Johannesburg&#10;Cape Town&#10;Durban"></textarea>
+        </div>
+        <div class="admin-error" id="adminError"></div>
+        <button class="admin-submit" onclick="submitNewHub()">Add Hub</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
 
 <script src="script.js"></script>
 </body>

@@ -212,4 +212,148 @@ function handleOverlayClick(e) {
   if (e.target === document.getElementById('modal')) closeModal();
 }
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+/* ── Admin modal ── */
+let adminTab = 'taxi'; // current tab
+
+function openAdminModal() {
+  document.getElementById('adminModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  switchAdminTab('taxi');
+  clearAdminForm();
+}
+
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleAdminOverlayClick(e) {
+  if (e.target === document.getElementById('adminModal')) closeAdminModal();
+}
+
+function switchAdminTab(tab) {
+  adminTab = tab;
+  document.getElementById('tabTaxi').classList.toggle('active', tab === 'taxi');
+  document.getElementById('tabBus').classList.toggle('active', tab === 'bus');
+  document.getElementById('adminModalSubtitle').textContent =
+    tab === 'taxi' ? 'Adding to Taxi Hubs' : 'Adding to Bus Hubs';
+  // Show/hide Official Site field (only for bus)
+  document.getElementById('adminSiteField').style.display = tab === 'bus' ? 'flex' : 'none';
+}
+
+function clearAdminForm() {
+  ['adminName','adminBadge','adminMap','adminPrice','adminSite','adminDests'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('adminError').textContent = '';
+}
+
+function submitNewHub() {
+  const name   = document.getElementById('adminName').value.trim();
+  const badge  = document.getElementById('adminBadge').value.trim();
+  const mapUrl = document.getElementById('adminMap').value.trim();
+  const price  = document.getElementById('adminPrice').value.trim();
+  const site   = document.getElementById('adminSite').value.trim();
+  const destsRaw = document.getElementById('adminDests').value.trim();
+  const errEl  = document.getElementById('adminError');
+
+  if (!name)   { errEl.textContent = 'Hub name is required.'; return; }
+  if (!mapUrl) { errEl.textContent = 'Google Maps link is required.'; return; }
+  if (!price)  { errEl.textContent = 'Estimated fair price is required.'; return; }
+  errEl.textContent = '';
+
+  // Build a unique ID
+  const id = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + '-' + Date.now();
+
+  // Parse destinations
+  const destinations = destsRaw
+    ? destsRaw.split('\n').map(l => l.trim()).filter(Boolean).map(c => ({ city: c, province: '' }))
+    : [];
+
+  // Register in hubData
+  hubData[id] = {
+    title: name,
+    subtitle: adminTab === 'taxi' ? 'Taxi destinations' : 'Bus destinations',
+    destinations
+  };
+
+  // Build the card HTML
+  const siteRow = (adminTab === 'bus' && site) ? `
+    <div class="info-row">
+      <span class="info-row-label">Official Site</span>
+      <span class="info-row-value">
+        <a href="${escHtml(site)}" target="_blank">
+          ${escHtml(new URL(site).hostname)}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </span>
+    </div>` : '';
+
+  const cardHtml = `
+    <div class="hub-card" style="animation:fadeUp .4s ease both;">
+      <div class="hub-name">${escHtml(name)} <span class="hub-badge">${escHtml(badge || 'New')}</span></div>
+      <div class="info-row">
+        <span class="info-row-label">Hub Name</span>
+        <span class="info-row-value">${escHtml(name)}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Location</span>
+        <span class="info-row-value">
+          <a href="${escHtml(mapUrl)}" target="_blank">
+            View on Google Maps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Est. Fair Price</span>
+        <span class="info-row-value"><span class="fare-badge">${escHtml(price)}</span></span>
+      </div>
+      ${siteRow}
+      <div class="see-more-row">
+        <button class="see-more-btn" onclick="openModal('${id}')">
+          See more details
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>`;
+
+  // Inject into the right page
+  const container = adminTab === 'taxi'
+    ? document.querySelector('#page4taxi .inner')
+    : document.querySelector('#page4bus .inner');
+  container.insertAdjacentHTML('beforeend', cardHtml);
+
+  closeAdminModal();
+  showToast(`"${name}" added to ${adminTab === 'taxi' ? 'Taxi' : 'Bus'} Hubs!`);
+
+  // Navigate to the relevant page so the user sees the new hub
+  nav(currentPage(), adminTab === 'taxi' ? 'page4taxi' : 'page4bus');
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function currentPage() {
+  const pages = ['page1','page2','page3','page4taxi','page4bus','page4entertainment'];
+  return pages.find(id => !document.getElementById(id).classList.contains('hidden')) || 'page1';
+}
+
+/* ── Toast ── */
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `toast ${type} show`;
+  setTimeout(() => { t.className = 'toast'; }, 2800);
+}
+
+/* ── Keyboard shortcuts ── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closeAdminModal(); }
+  // Ctrl+A (not inside a text input) → open admin modal
+  if (e.ctrlKey && e.key === 'a' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+    e.preventDefault();
+    openAdminModal();
+  }
+});
