@@ -212,10 +212,87 @@ function handleOverlayClick(e) {
   if (e.target === document.getElementById('modal')) closeModal();
 }
 
+/* ── Admin auth state ── */
+let adminLoggedIn = false;
+
+function handleAdminBtnClick() {
+  if (adminLoggedIn) {
+    openAdminSessionModal();
+  } else {
+    openAdminLoginModal();
+  }
+}
+
+/* ── Admin login modal ── */
+function openAdminLoginModal() {
+  document.getElementById('adminLoginModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('loginUsername').value = '';
+  document.getElementById('loginPassword').value = '';
+  document.getElementById('loginError').textContent = '';
+  setTimeout(() => document.getElementById('loginUsername').focus(), 300);
+}
+
+function closeAdminLoginModal() {
+  document.getElementById('adminLoginModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleLoginOverlayClick(e) {
+  if (e.target === document.getElementById('adminLoginModal')) closeAdminLoginModal();
+}
+
+function submitAdminLogin() {
+  const username = document.getElementById('loginUsername').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const errEl    = document.getElementById('loginError');
+
+  if (username === 'admin' && password === 'admin') {
+    adminLoggedIn = true;
+    closeAdminLoginModal();
+    // Update admin button to show logged-in state
+    document.getElementById('adminBtn').classList.add('logged-in');
+    // Reveal all delete buttons
+    document.querySelectorAll('.delete-hub-btn').forEach(b => b.style.display = '');
+    showToast('Admin access granted');
+  } else {
+    errEl.textContent = 'Incorrect username or password.';
+    document.getElementById('loginPassword').value = '';
+    document.getElementById('loginPassword').focus();
+  }
+}
+
+/* ── Admin session modal (shown when already logged in) ── */
+function openAdminSessionModal() {
+  document.getElementById('adminSessionModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAdminSessionModal() {
+  document.getElementById('adminSessionModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleSessionOverlayClick(e) {
+  if (e.target === document.getElementById('adminSessionModal')) closeAdminSessionModal();
+}
+
+function adminLogout() {
+  adminLoggedIn = false;
+  document.getElementById('adminBtn').classList.remove('logged-in');
+  closeAdminSessionModal();
+  // Hide all delete buttons
+  document.querySelectorAll('.delete-hub-btn').forEach(b => b.style.display = 'none');
+  // Cancel any pending confirm states
+  document.querySelectorAll('.hub-card.confirm-delete').forEach(c => cancelDelete(c));
+  showToast('Logged out of admin');
+}
+
 /* ── Admin modal ── */
 let adminTab = 'taxi'; // current tab
 
 function openAdminModal() {
+  if (!adminLoggedIn) { openAdminLoginModal(); return; }
   document.getElementById('adminModal').classList.add('open');
   document.body.style.overflow = 'hidden';
   switchAdminTab('taxi');
@@ -315,6 +392,9 @@ function submitNewHub() {
           See more details
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
+        <button class="delete-hub-btn" onclick="confirmDeleteHub(this, '${id}')" title="Delete hub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+        </button>
       </div>
     </div>`;
 
@@ -324,11 +404,85 @@ function submitNewHub() {
     : document.querySelector('#page4bus .inner');
   container.insertAdjacentHTML('beforeend', cardHtml);
 
+  // Make delete button on new card visible (admin is logged in)
+  const newCard = container.lastElementChild;
+  const newDeleteBtn = newCard.querySelector('.delete-hub-btn');
+  if (newDeleteBtn) newDeleteBtn.style.display = '';
+
   closeAdminModal();
   showToast(`"${name}" added to ${adminTab === 'taxi' ? 'Taxi' : 'Bus'} Hubs!`);
 
   // Navigate to the relevant page so the user sees the new hub
   nav(currentPage(), adminTab === 'taxi' ? 'page4taxi' : 'page4bus');
+}
+
+/* ── Delete Hub ── */
+function confirmDeleteHub(btn, hubId) {
+  if (!adminLoggedIn) {
+    openAdminLoginModal();
+    return;
+  }
+  const card = btn.closest('.hub-card');
+  // If already in confirm state, cancel it
+  if (card.classList.contains('confirm-delete')) {
+    cancelDelete(card);
+    return;
+  }
+  // Enter confirm state
+  card.classList.add('confirm-delete');
+
+  // Swap the delete button to a confirm+cancel pair
+  const row = btn.closest('.see-more-row');
+  btn.style.display = 'none';
+
+  const confirmHtml = `
+    <div class="delete-confirm-btns" id="confirm-${CSS.escape(hubId)}">
+      <button class="delete-confirm-yes" onclick="deleteHub('${hubId}')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Yes, remove
+      </button>
+      <button class="delete-confirm-no" onclick="cancelDelete(this.closest('.hub-card'))">
+        Cancel
+      </button>
+    </div>`;
+  row.insertAdjacentHTML('beforeend', confirmHtml);
+}
+
+function cancelDelete(card) {
+  card.classList.remove('confirm-delete');
+  const confirmBtns = card.querySelector('.delete-confirm-btns');
+  if (confirmBtns) confirmBtns.remove();
+  const deleteBtn = card.querySelector('.delete-hub-btn');
+  if (deleteBtn) deleteBtn.style.display = '';
+}
+
+function deleteHub(hubId) {
+  // Find the card — it contains a button with onclick matching this hubId
+  const btn = document.querySelector(`.delete-hub-btn[onclick*="${hubId}"]`);
+  const card = btn ? btn.closest('.hub-card') : null;
+  if (!card) return;
+
+  const hubName = card.querySelector('.hub-name')?.firstChild?.textContent?.trim() || 'Hub';
+
+  // Animate out
+  card.style.transition = 'opacity .3s ease, transform .3s ease, max-height .4s ease, margin .3s ease, padding .3s ease';
+  card.style.opacity = '0';
+  card.style.transform = 'translateX(18px) scale(.97)';
+  card.style.maxHeight = card.offsetHeight + 'px';
+  card.style.overflow = 'hidden';
+
+  setTimeout(() => {
+    card.style.maxHeight = '0';
+    card.style.marginBottom = '0';
+    card.style.padding = '0';
+  }, 280);
+
+  setTimeout(() => {
+    card.remove();
+    delete hubData[hubId];
+  }, 680);
+
+  showToast(`"${hubName}" removed`);
 }
 
 function escHtml(str) {
@@ -350,10 +504,20 @@ function showToast(msg, type = 'success') {
 
 /* ── Keyboard shortcuts ── */
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeModal(); closeAdminModal(); }
-  // Ctrl+A (not inside a text input) → open admin modal
+  if (e.key === 'Escape') {
+    closeModal();
+    closeAdminModal();
+    closeAdminLoginModal();
+    closeAdminSessionModal();
+  }
+  // Ctrl+A (not inside a text input) → open admin panel
   if (e.ctrlKey && e.key === 'a' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
     e.preventDefault();
-    openAdminModal();
+    handleAdminBtnClick();
   }
+});
+
+// Hide all delete buttons on page load — only visible when admin is logged in
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.delete-hub-btn').forEach(b => b.style.display = 'none');
 });

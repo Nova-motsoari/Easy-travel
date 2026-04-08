@@ -13,25 +13,28 @@
 <div class="blob blob-1"></div>
 <div class="blob blob-2"></div>
 
-<!-- ══ Theme Toggle ══ -->
-<button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
-  <!-- Moon icon (shown in dark mode) -->
-  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-  </svg>
-  <!-- Sun icon (shown in light mode) -->
-  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="5"/>
-    <line x1="12" y1="1" x2="12" y2="3"/>
-    <line x1="12" y1="21" x2="12" y2="23"/>
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-    <line x1="1" y1="12" x2="3" y2="12"/>
-    <line x1="21" y1="12" x2="23" y2="12"/>
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-  </svg>
-</button>
+<!-- ══ Top Bar Buttons ══ -->
+<div class="top-bar">
+  <!-- Admin button -->
+  <button class="top-btn admin-login-btn" id="adminBtn" onclick="handleAdminBtnClick()" title="Admin">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>
+  </button>
+  <!-- Theme toggle -->
+  <button class="top-btn theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+</div>
 
 <!-- ══ PAGE 1: Welcome ══ -->
 <div class="page" id="page1">
@@ -148,6 +151,9 @@
           See more details
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
+        <button class="delete-hub-btn" onclick="confirmDeleteHub(this, 'central-taxi')" title="Delete hub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+        </button>
       </div>
     </div>
 
@@ -175,6 +181,9 @@
         <button class="see-more-btn" onclick="openModal('mangaung-taxi')">
           See more details
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button class="delete-hub-btn" onclick="confirmDeleteHub(this, 'mangaung-taxi')" title="Delete hub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
         </button>
       </div>
     </div>
@@ -204,6 +213,9 @@
           See more details
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
+        <button class="delete-hub-btn" onclick="confirmDeleteHub(this, 'airport-taxi')" title="Delete hub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+        </button>
       </div>
     </div>
 
@@ -231,6 +243,9 @@
         <button class="see-more-btn" onclick="openModal('langenhoven-taxi')">
           See more details
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button class="delete-hub-btn" onclick="confirmDeleteHub(this, 'langenhoven-taxi')" title="Delete hub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
         </button>
       </div>
     </div>
@@ -288,6 +303,9 @@
           See more details
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
+        <button class="delete-hub-btn" onclick="confirmDeleteHub(this, 'park-road')" title="Delete hub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+        </button>
       </div>
     </div>
 
@@ -324,6 +342,9 @@
         <button class="see-more-btn" onclick="openModal('greyhound')">
           See more details
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button class="delete-hub-btn" onclick="confirmDeleteHub(this, 'greyhound')" title="Delete hub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
         </button>
       </div>
     </div>
@@ -362,6 +383,9 @@
           See more details
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
+        <button class="delete-hub-btn" onclick="confirmDeleteHub(this, 'translux')" title="Delete hub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+        </button>
       </div>
     </div>
 
@@ -398,6 +422,9 @@
         <button class="see-more-btn" onclick="openModal('hoffman-square')">
           See more details
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button class="delete-hub-btn" onclick="confirmDeleteHub(this, 'hoffman-square')" title="Delete hub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
         </button>
       </div>
     </div>
@@ -580,7 +607,64 @@
   </div>
 </div>
 
-<!-- ══ ADMIN MODAL: Add Hub (Ctrl+A) ══ -->
+<!-- ══ ADMIN LOGIN MODAL ══ -->
+<div class="modal-overlay" id="adminLoginModal" onclick="handleLoginOverlayClick(event)">
+  <div class="modal admin-modal">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Admin Login</div>
+        <div class="modal-subtitle">Enter credentials to access admin tools</div>
+      </div>
+      <button class="modal-close" onclick="closeAdminLoginModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="admin-form">
+        <div class="admin-field">
+          <label class="admin-label">Username</label>
+          <input class="admin-input" id="loginUsername" type="text" placeholder="Username" autocomplete="off"/>
+        </div>
+        <div class="admin-field">
+          <label class="admin-label">Password</label>
+          <input class="admin-input" id="loginPassword" type="password" placeholder="Password" onkeydown="if(event.key==='Enter') submitAdminLogin()"/>
+        </div>
+        <div class="admin-error" id="loginError"></div>
+        <button class="admin-submit" onclick="submitAdminLogin()">Log In</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ADMIN SESSION MODAL (logged in — shows options) ══ -->
+<div class="modal-overlay" id="adminSessionModal" onclick="handleSessionOverlayClick(event)">
+  <div class="modal admin-modal">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Admin Panel</div>
+        <div class="modal-subtitle">Logged in as <strong>admin</strong></div>
+      </div>
+      <button class="modal-close" onclick="closeAdminSessionModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="admin-form">
+        <button class="admin-submit" onclick="closeAdminSessionModal(); openAdminModal();" style="margin-bottom:10px;">
+          Add New Hub
+        </button>
+        <button class="admin-session-logout" onclick="adminLogout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Log Out
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ADMIN MODAL: Add Hub ══ -->
 <div class="modal-overlay" id="adminModal" onclick="handleAdminOverlayClick(event)">
   <div class="modal admin-modal">
     <div class="modal-handle"></div>
